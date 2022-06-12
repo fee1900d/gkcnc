@@ -20,7 +20,7 @@ import (
 
 */
 func main() {
-	fmt.Println("server starting...")
+	log.Println("server starting...")
 
 	// 1-3
 	http.HandleFunc("/test", handleTest)
