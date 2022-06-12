@@ -7,4 +7,4 @@
 - 模块二
   - [x] 2 HTTP 服务器
 - 模块三
-  - [ ] 3 Dockerfile 及源码
+  - [x] 3 Dockerfile 及源码
