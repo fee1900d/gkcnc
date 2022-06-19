@@ -9,5 +9,5 @@
 - 模块三
   - [x] 3 Dockerfile 及源码
 - 模块四
-  - [ ] 4.1 Kubeadm 安装 Kubernetes 集群
+  - [x] 4.1 Kubeadm 安装 Kubernetes 集群
   - [ ] 4.2 Envoy Deployment 实验
