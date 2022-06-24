@@ -20,19 +20,25 @@ import (
 func main() {
 	ch := make(chan int, 10)
 
-	go func(ch chan<- int) {
-		rand.Seed(time.Now().UnixNano())
-		timer := time.NewTicker(time.Second)
-		for {
-			t := <-timer.C
-			next := rand.Intn(10)
-			fmt.Println(t.Format("2006-01-02 15:04:05"), "sending:", next)
-			ch <- next
-		}
-	}(ch)
+	go producer(ch)
 
+	consumer(ch)
+
+}
+
+func consumer(ch chan int) {
 	for v := range ch {
 		fmt.Println("receiving:", v)
 	}
+}
 
+func producer(ch chan<- int) {
+	rand.Seed(time.Now().UnixNano())
+	timer := time.NewTicker(time.Second)
+	for {
+		t := <-timer.C
+		next := rand.Intn(10)
+		fmt.Println(t.Format("2006-01-02 15:04:05"), "sending:", next)
+		ch <- next
+	}
 }
