@@ -37,7 +37,15 @@ func main() {
 
 func handleTest(w http.ResponseWriter, r *http.Request) {
 	//1. 接收客户端 request，并将 request 中带的 header 写入 response header
-	r.Header.Write(w)
+	//r.Header.Write(w)
+	// for...range 写法
+	for k, v := range r.Header {
+		// v 为数组
+		for _, vv := range v {
+			log.Println("add header", k, vv)
+			w.Header().Add(k, vv)
+		}
+	}
 
 	//2. 读取当前系统的环境变量中的 VERSION 配置，并写入 response header
 	version, exists := os.LookupEnv("VERSION")
@@ -52,7 +60,7 @@ func handleTest(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println("parse IP error,", err.Error())
 	}
-	log.Println("client IP:", ip, ", HTTP status: ", 200)
+	log.Println("client IP:", ip, ", HTTP status: ", http.StatusOK)
 }
 
 // 根据头信息返回IP
