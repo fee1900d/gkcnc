@@ -60,7 +60,7 @@ func handleTest(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println("parse IP error,", err.Error())
 	}
-	log.Println("client IP:", ip, ", HTTP status: ", http.StatusOK)
+	log.Println("client IP:", ip, ", HTTP status: ", w.Header().Get("status"))
 }
 
 // 根据头信息返回IP
